@@ -15,7 +15,7 @@ Build a personal portfolio website to showcase my web development projects, skil
 
 1. **Home:** Introduction with name, role, and a short tagline.
 2. **About:** Brief bio or description of experience.
-3. **Skills:** Include all skills described in the `.claude/skills.md` files, highlighting UI/UX design and other technical skills.
+3. **Skills:** Include all skills described in the `.claude/skills/` markdown files, highlighting UI/UX design and other technical skills.
 4. **Projects:** Display web development projects with:
    - Project name
    - Short description
@@ -38,7 +38,7 @@ Build a personal portfolio website to showcase my web development projects, skil
   - `index.html`
   - `style.css`
   - `script.js`
-- Reference skills from `.claude/skills.md` to populate the Skills section
+  - Reference skills from `.claude/skills/` markdown files to populate the Skills section
 
 ## Notes
 

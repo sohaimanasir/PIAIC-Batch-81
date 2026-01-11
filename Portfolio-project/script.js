@@ -2,12 +2,12 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Check for saved theme preference or respect OS preference
-const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', currentTheme);
 
-// Toggle theme function with ripple effect
-function toggleTheme(event) {
+// Toggle theme function with ripple effect - FIXED
+function toggleTheme(event) {  // ✅ FIXED: Added event parameter
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
@@ -496,7 +496,7 @@ function initParticles() {
             this.size = Math.random() * 2 + 0.5;
             this.speedX = Math.random() * 1 - 0.5;
             this.speedY = Math.random() * 1 - 0.5;
-            this.color = \`rgba(\${Math.random() > 0.5 ? '255, 126, 179' : '161, 140, 209'}, \${Math.random() * 0.2 + 0.05})\`;
+            this.color = `rgba(${Math.random() > 0.5 ? '255, 126, 179' : '161, 140, 209'}, ${Math.random() * 0.2 + 0.05})`;
         }
 
         update() {
@@ -540,7 +540,7 @@ function initParticles() {
 
                 if (distance < 100) {
                     ctx.beginPath();
-                    ctx.strokeStyle = \`rgba(161, 140, 209, \${0.2 * (1 - distance/100)})\`;
+                    ctx.strokeStyle = `rgba(161, 140, 209, ${0.2 * (1 - distance/100)})`;
                     ctx.lineWidth = 0.5;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);

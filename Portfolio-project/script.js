@@ -7,7 +7,7 @@ const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefe
 body.setAttribute('data-theme', currentTheme);
 
 // Toggle theme function with ripple effect
-function toggleTheme() {
+function toggleTheme(event) {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 

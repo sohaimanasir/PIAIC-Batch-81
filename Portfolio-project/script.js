@@ -2,12 +2,17 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Check for saved theme preference or respect OS preference
-const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', currentTheme);
 
+<<<<<<< HEAD
 // Toggle theme function with ripple effect
 function toggleTheme(event) {
+=======
+// Toggle theme function with ripple effect - FIXED
+function toggleTheme(event) {  // ✅ FIXED: Added event parameter
+>>>>>>> 77543aebbd176c20e3af869b8de1072e88145126
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
@@ -294,4 +299,79 @@ window.addEventListener('scroll', () => {
         navbar.style.backdropFilter = 'blur(10px)';
         navbar.style.padding = 'var(--spacing-md) 0';
     }
+<<<<<<< HEAD
 });
+=======
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+            this.color = `rgba(${Math.random() > 0.5 ? '255, 126, 179' : '161, 140, 209'}, ${Math.random() * 0.2 + 0.05})`;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticlesArray() {
+        particles = [];
+        const particleCount = window.innerWidth * window.innerHeight / 10000;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    initParticlesArray();
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            // Draw connections between nearby particles
+            for (let j = i; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 100) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(161, 140, 209, ${0.2 * (1 - distance/100)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+}
+
+// Initialize particles on load
+document.addEventListener('DOMContentLoaded', initParticles);
+>>>>>>> 77543aebbd176c20e3af869b8de1072e88145126
